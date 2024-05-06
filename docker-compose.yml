@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./ecommerceFrontend/ecommerceFrontend
+    container_name: frontend_container
+    ports:
+      - 5173:5173
+  backend:
+    build: ./eCommerceAPI/eCommerceAPI
+    container_name: backend_container
+    ports:
+      - 8080:8080
+    volumes:
+      - ./ecommerceAPI/eCommerceAPI:/app
+    depends_on:
+      - database
+    environment: 
+      - ADMIN_USERNAME=admin@gmail.com
+      - ADMIN_PASSWORD=Test1234!
+      - DB_HOST=database_container
+      - DB_NAME=EcommerceDB
+      - DB_USER_ID=sa
+      - DB_SA_PASSWORD=MyPassword123!
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
+    container_name: database_container
+    ports:
+      - 1433:1433
+    volumes:
+      - ecommerce:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyPassword123!
+
+volumes:
+  ecommerce:
+  
