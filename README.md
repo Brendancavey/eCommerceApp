@@ -27,3 +27,10 @@ In order to run the application, install to your local machine the following:
   <li>Frontend: http://localhost:5173</li>
   <li>Backend: http://localhost:8080/swagger</li>
 </ul>
+
+<h2>Repositories</h2>
+See the links below to access the following repositories
+
+  - [Backend](https://github.com/Brendancavey/eCommerceAPI)
+  - [Frontend](https://github.com/Brendancavey/eCommerceFrontend)
+
