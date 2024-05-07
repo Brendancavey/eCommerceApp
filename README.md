@@ -28,6 +28,13 @@ In order to run the application, install to your local machine the following:
   <li>Backend: http://localhost:8080/swagger</li>
 </ul>
 
+<h2>How to add items to the store</h2>
+Log into admin account:
+<li>Admin Login: admin@gmail.com</li>
+<li>Admin Password: Test1234!</li></li>
+
+Go to user account page, and access the admin panel.
+
 <h2>Repositories</h2>
 See the links below to access the following repositories
 
