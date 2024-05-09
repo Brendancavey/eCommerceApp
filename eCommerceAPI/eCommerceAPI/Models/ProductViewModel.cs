@@ -8,6 +8,6 @@
         public bool isNew { get; set; }
         public int price { get; set; }
         public int salePrice { get; set; }
-        public int[] SelectedCategoryIds { get; set; } 
+        public int[]? SelectedCategoryIds { get; set; } 
     }
 }

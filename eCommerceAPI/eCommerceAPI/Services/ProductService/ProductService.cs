@@ -60,12 +60,15 @@ namespace eCommerceAPI.Services.ProductService
         }
         public async Task<Product> AddProduct(Product newProduct, int[]? selectedCategoryIds)
         {
-            var selectedCategories = _context.Categories
-                .Where(c => selectedCategoryIds.Contains(c.Id))
-                .ToList();
-            foreach(var category in selectedCategories)
+            if (selectedCategoryIds != null)
             {
-                newProduct.Categories.Add(category);
+                var selectedCategories = _context.Categories
+                    .Where(c => selectedCategoryIds.Contains(c.Id))
+                    .ToList();
+                foreach (var category in selectedCategories)
+                {
+                    newProduct.Categories.Add(category);
+                }
             }
             _context.Products.Add(newProduct);
             await _context.SaveChangesAsync();

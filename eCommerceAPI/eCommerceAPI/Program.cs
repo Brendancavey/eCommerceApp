@@ -6,6 +6,7 @@ using eCommerceAPI.Services.CartService;
 using eCommerceAPI.Services.ProductService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Security.Claims;
 
 public class Program
@@ -43,10 +44,11 @@ public class Program
             var dbName = Environment.GetEnvironmentVariable("DB_NAME");
             var dbUserId = Environment.GetEnvironmentVariable("DB_USER_ID");
             var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
-            var connectionString = $"Server={dbHost};Database={dbName};User Id={dbUserId};Password={dbPassword};TrustServerCertificate=True";
-
+            var azureconnectionString = $"Server={dbHost};Database={dbName};Persist Security Info=False;User ID={dbUserId};Password={dbPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication='Active Directory Password';";
+            var connectionString = $"Server={dbHost};Database={dbName};User ID={dbUserId};Password={dbPassword};TrustServerCertificate=True";
             //options.UseSqlServer(configuration.GetConnectionString("DesktopConnection"));
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString,
+                sqlServerOptions => sqlServerOptions.EnableRetryOnFailure());
         });
         
         builder.Services.AddIdentityApiEndpoints<ApplicationUser>
